@@ -24,8 +24,7 @@ Sightings.prototype.getData = function () {
 };
 
 Sightings.prototype.postSighting = function (sighting) {
-  const request = new Request(this.url);
-  request.post(sighting)
+  this.request.post(sighting)
     .then((sighting) => {
       PubSub.publish('Sightings:data-loaded', sighting)
     })
