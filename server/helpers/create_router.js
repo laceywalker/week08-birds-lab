@@ -29,6 +29,14 @@ const createRouter = function (collection) {
       });
   });
 
+  router.post('/', (req, res) => {
+    const newSighting = req.body;
+    collection
+      .insertOne(newSighting)
+      .then(() => collection.find().toArray())
+      .then((docs) => res.json(docs))
+  });
+
   router.delete('/:id', (req, res) => {
     const id = req.params.id;
     collection
